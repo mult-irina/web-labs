@@ -1,0 +1,56 @@
+<html>
+<head>
+ <meta charset="utf-8">
+</head>
+<body bgcolor = "grey">
+<style>
+    a {
+	cursor: pointer;
+	}
+</style>
+<input type="radio" id="radioButton1" name = "radiobutton">
+<label for="radioButton1"><font size = "4" face = "times new roman"   color = "red">Красный</font></label>
+<br>
+<input type="radio" id="radioButton2" name = "radiobutton">
+<label for="radioButton2"><font size = "4" color = "orange">Оранжевый</font></label>
+<br>
+<input type="radio" id="radioButton3" name = "radiobutton">
+<label for="radioButton3"><font size = "4" color = "yellow">Жёлтый</font></label>
+<br>
+<input type="radio" id="radioButton4" name = "radiobutton">
+<label for="radioButton4"><font size = "4" color = "lime">Зелёный</font></label>
+<br>
+<input type="radio" id="radioButton5" name = "radiobutton">
+<label for="radioButton5"><font size = "4" color = "cyan">Голубой</font></label>
+<br>
+<input type="radio" id="radioButton6" name = "radiobutton">
+<label for="radioButton6"><font size = "4" color = "blue">Синий</font></label>
+<br>
+<input type="radio" id="radioButton7" name = "radiobutton">
+<label for="radioButton7"><font size = "4" color = "violet">Фиолетовый</font></label>
+<br><br>
+<a ondblclick="Number()" onmousedown="return false"><font color = "white">Вывод</a>
+
+<script>
+function Number() {
+  var number = "NO";
+   if (document.getElementById("radioButton1").checked)
+       {number = 1;}
+   if (document.getElementById("radioButton2").checked)
+       {number = 2;}
+   if (document.getElementById("radioButton3").checked)
+       {number = 3;}
+   if (document.getElementById("radioButton4").checked)
+       {number = 4;}
+   if (document.getElementById("radioButton5").checked)
+       {number = 5;}
+   if (document.getElementById("radioButton6").checked)
+       {number = 6;}
+   if (document.getElementById("radioButton7").checked)
+       {number = 7;}
+   alert(number);
+}
+</script>
+
+</body>
+</html>
