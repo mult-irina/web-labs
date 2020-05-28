@@ -1,0 +1,94 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </head>
+    <body>
+        <a>Данные для запроса:</a>
+        <br><br>
+        <a>Вид животного:</a>
+		<br>
+        <input id="species"></input>
+		<br><br>
+        <a>Ширина изображения:</a>
+		<br>
+        <input id="width"></input>
+		<br><br>
+        <a>Высота изображения:</a>
+		<br>
+        <input id="height"></input>
+		<br><br>
+        <a>Цвет изображения:</a>
+		<br>
+        <input id="color"></input>
+		<br><br>
+        <a>Номер изображения:</a>
+		<br>
+        <input id="number"></input>
+		<br><br>
+        <input type="submit" value="Поиск изображения" onclick="find()"/>
+    </body>
+    <script>
+        async function find() {
+            var img_s= null;
+            var img_w = null;
+            var img_h = null;
+            var img_c = null;
+            var img_n = null;
+            var img_i = null;
+
+            img_s = document.getElementById("species").value;
+            img_w = document.getElementById("width").value;
+            img_h = document.getElementById("height").value;
+            img_c = document.getElementById("color").value;
+            img_n = document.getElementById("number").value;
+            img_i = "pic/" + String(img_s) + String(img_n) + ".jpg";
+
+            let inputsJSON = {
+                species: img_s,
+                width: img_w,
+                height: img_h,
+                color: img_c,
+                image: img_i,
+                value: img_n
+            };
+
+            let responce = await fetch('./api/input',{
+                method: 'POST',
+                headers :{
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(inputsJSON)
+            });
+
+            const json = await responce.json();
+
+            console.log(json);
+
+            // Ошибка
+            if (json.error != null)
+            {
+                console.log(json.error);
+                var pjson = JSON.stringify(json);
+                document.write(pjson);
+            }
+            else
+            {
+                document.write('<img id="reqImg" src ="">');
+
+                console.log(json.image);
+
+                
+                document.getElementById("reqImg").src = json.image;
+                delete json._id;
+                delete json.__v;
+                document.write('<br><a>Вид животного:</a>' + json.species);
+				document.write('<br><a>Ширина изображения:</a>' + json.width);
+				document.write('<br><a>Высота изображения:</a>' + json.height);
+				document.write('<br><a>Цвет изображения:</a>' + json.color);
+				document.write('<br><a>Номер изображения:</a>' + json.value);
+            }
+
+
+        }
+    </script>
+</html>
